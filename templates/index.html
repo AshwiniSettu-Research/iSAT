@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProAlignX: Protein Sequence Analyzing Tool</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous">
+    
+</head>
+<body>
+  <header>
+      <h1>ProAlignX: Protein Sequence Alignment Tool</h1>
+      <nav>
+      <ul class="menu">
+        <li><a href=""/index"">Input Form</a></li>
+        <li><a href=""/index"">Documentation</a></li>
+        <li><a href=""/index"">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="note-box">
+    </div>
+    <h2>SFA - Structure based Fingerprint Alignment Tool</h2>
+    <br>
+    <div class="tool-description">
+      <p class="tool-description-text">SFA reads two input sequences and writes their optimal global sequence alignment. We introduce a structure-based fingerprint scoring method as a key component of our alignment approach. This method leverages the structural features of proteins to assign scores to alignments, giving higher weights to matches between structurally similar residues.</p>
+    </div>
+    <form action="/process" method="POST">
+      <p class="step-text">Step 1: Enter or paste your first protein sequence</p>
+      <label for="protein_sequence_a"></label>
+      <textarea id="protein_sequence_a" name="protein_sequence_a" rows="4" cols="50"></textarea><br><br>
+      <label for="file-upload">(OR), Upload File:</label>
+      <input type="file" id="file-upload" accept=".txt, .fasta">
+      <div class="options-row">
+        <div class="extra-options">
+          <a href="example-sequence.html">Check Example sequence</a>
+        </div>
+        <div class="clear-textarea">
+          <a href="#" class="clear-link" onclick="clearSequence('protein_sequence_a', 'protein_sequence_b')">Clear Sequence</a>
+        </div>
+      </div>
+      <p class="step-text">Step 2: Enter or paste your second protein sequence</p>
+      <label for="protein_sequence_b"></label>
+      <textarea id="protein_sequence_b" name="protein_sequence_b" rows="4" cols="50"></textarea><br><br>
+      <label for="file-upload">(OR), Upload File:</label>
+      <input type="file" id="file-upload" accept=".txt, .fasta"><br><br><br>
+      <input type="submit" value="Perform Alignment">
+    </form>
+    <div class="support-container">
+      <p class="support-message">If you require any assistance or have any inquiries, please do not hesitate to reach out to our dedicated customer support team at ProAlignX Support.</p>
+    </div>
+    <div id="output-container"></div>
+  </main>
+  
+  <footer>
+    <section class="footer">
+      <h4>About Us</h4>
+      <p>ProAlignX is the home for Bioinformatics. We help people exploit complex information to make discoveries that benefit humankind.</p>
+      <div class="icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </section>
+    <section class="footer">
+    </section>
+  </footer>
+
+  <script>
+    function clearSequence(elementIdA, elementIdB) {
+      document.getElementById(elementIdA).value = '';
+      document.getElementById(elementIdB).value = '';
+    }
+  </script>
+</body>
+</html>

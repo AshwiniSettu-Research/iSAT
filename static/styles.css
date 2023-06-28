@@ -1,0 +1,219 @@
+header {
+  background-color: #1d7a85;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+h1 {
+            margin-bottom: 20px;
+        }
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.menu li {
+  margin: 0 10px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.menu li a:hover {
+  background-color: lightblue;
+}
+
+.menu li:not(:last-child)::after {
+  content: "|";
+  margin-left: 8px;
+  margin-right: 8px;
+  color: white;
+}
+/*-----------------part-1-------------------------------------------*/
+
+      form {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+      #protein_sequence_a, #protein_sequence_b {
+        width: 100%;
+        height: 120px;
+      }
+      .clear-link {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .clear-link:hover {
+        text-decoration: none;
+      }
+      input[type="submit"] {
+        display: block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #1d7a85;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+/*-----------------Main page--------------------------------------------*/
+.note-box {
+            background-color: lightyellow;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+.note-message {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+        }
+h2 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1d7a85;
+            margin: 0;
+        }
+        
+.tool-description {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+.tool-description p {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+        }
+/*---------Form-------------------------------------------------------*/
+form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.step-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+form p.step-text {
+  background-color: lightblue;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+form button[type="submit"] {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1d7a85;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form submit[type="submit"]:hover {
+  background-color: #1d7a85;
+}
+/*---------------------------option button links-----*/
+.options-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.extra-options a,
+.clear-textarea a {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.extra-options a:hover,
+.clear-textarea a:hover {
+  background-color: lightblue;
+  color: #fff;
+}
+.clear-link:hover {
+  background-color: #c0392b;
+}
+
+
+/*----------------------form end-----------*/
+.support-container {
+  display: flex;
+  justify-content: center;
+}
+
+.support-message {
+  background-color: lightgray;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+/*-------------footer--------------*/
+
+
+footer {
+  background-color: lightyellow;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer {
+  margin-bottom: 20px;
+}
+
+.footer h4 {
+  color: #1d7a85;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.icons a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #333;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.icons a:hover {
+  color: #007bff;
+}

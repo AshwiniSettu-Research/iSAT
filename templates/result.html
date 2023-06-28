@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alignment Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #1d7a85;
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    pre {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .heading-button {
+      display: inline-block;
+      background-color: #1d7a85;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .heading-button:hover {
+      background-color: #155d69;
+    }
+
+    h2 {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .graph-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .graph-container h3 {
+      color: #1d7a85;
+      margin-bottom: 10px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .graph-container img {
+      width: 100%;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .graph-container .graph-item {
+      width: 48%;
+      position: relative;
+    }
+
+    .graph-container .graph-item button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 10px;
+      background-color: #1d7a85;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    .graph-container .graph-item button:hover {
+      background-color: #155d69;
+    }
+    .alignment-table-button {
+    display: inline-block;
+    background-color: #1d7a85;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .alignment-table-button:hover {
+    background-color: #155d69;
+  }
+     .table-container th.header {
+    background-color: #1d7a85;
+    color: white;
+    font-weight: bold;
+  }
+
+    .table-container {
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+
+    .table-container table {
+      width: 100%;
+    }
+
+    .table-container th,
+    .table-container td {
+      padding: 4px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .table-container th.position {
+      background-color: #1d7a85;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .table-container td.sequence {
+      background-color: #fff;
+      color: #1d7a85;
+      font-weight: bold;
+    }
+
+    .table-container td.matches {
+      background-color: #d9ead3;
+    }
+
+    .table-container td.mismatches {
+      background-color: #f4cccc;
+    }
+
+    .table-container td.insertions {
+      background-color: #cfe2f3;
+    }
+
+    .table-container td.deletions {
+      background-color: #fce5cd;
+    }
+
+    /* Added Styles */
+    .consensus-box {
+  border: 1px solid #1d7a85;
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.consensus-button {
+  display: inline-block;
+  background-color: #1d7a85;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.consensus-button:hover {
+  background-color: #155d69;
+}
+
+.consensus-sequence {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+  </style>
+  <script>
+    function openHeatmapWindow() {
+      var heatmapWindow = window.open("", "Alignment Heatmap", "width=600,height=400");
+      heatmapWindow.document.write('<html><head><title>Alignment Heatmap</title></head><body><div style="padding: 20px;"><h2>Alignment Matrix Heatmap</h2><img src="data:image/png;base64,{{ heatmap_base64 }}" alt="Alignment Matrix Heatmap"></div></body></html>');
+      heatmapWindow.document.close();
+    }
+
+    function openScatterPlotWindow() {
+      var scatterPlotWindow = window.open("", "Aligned Sequences Scatter Plot", "width=600,height=400");
+      scatterPlotWindow.document.write('<html><head><title>Aligned Sequences Scatter Plot</title></head><body><div style="padding: 20px;"><h2>Aligned Sequences Scatter Plot</h2><img src="data:image/png;base64,{{ scatter_plot_base64 }}" alt="Aligned Sequences Scatter Plot"></div></body></html>');
+      scatterPlotWindow.document.close();
+    }
+
+    function openTableWindow() {
+      var tableWindow = window.open("", "Alignment Table", "width=600,height=400");
+      tableWindow.document.write('<html><head><title>Alignment Table</title></head><body><div style="padding: 20px;"><h2>Alignment Table</h2><table>' +
+        '<thead><tr><th>Position</th><th>Sequence</th><th>Matches</th><th>Mismatches</th><th>Insertions</th><th>Deletions</th></tr></thead>' +
+        '<tbody>' +
+        '{% for row in alignment_table[1:] %}' +
+        '<tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>' +
+        '{% endfor %}' +
+        '</tbody></table></div></body></html>');
+      tableWindow.document.close();
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Alignment Result</h1>
+  </header>
+  <pre>{{ output_table }}</pre>
+
+  <div class="heading-button" onclick="openHeatmapWindow()">Alignment Matrix Heatmap</div>
+  <div class="heading-button" onclick="openScatterPlotWindow()">Aligned Sequences Scatter Plot</div>
+  <div class="heading-button" onclick="openTableWindow()">Alignment Table</div>
+  <div class="heading-button" onclick="openTableWindow()">Consensus Sequence</div>
+
+  <div class="graph-container">
+    <div class="graph-item">
+      <h3>Alignment Matrix Heatmap</h3>
+      <img src="data:image/png;base64,{{ heatmap_base64 }}" alt="Alignment Matrix Heatmap">
+      <button onclick="openHeatmapWindow()">Open in Separate Window</button>
+    </div>
+    <div class="graph-item">
+      <h3>Aligned Sequences Scatter Plot</h3>
+      <img src="data:image/png;base64,{{ scatter_plot_base64 }}" alt="Aligned Sequences Scatter Plot">
+      <button onclick="openScatterPlotWindow()">Open in Separate Window</button>
+    </div>
+  </div>
+
+  {% set sequence_length = consensus_sequence|length %}
+
+  <div class="consensus-box">
+  <h3>
+    <button class="consensus-button" onclick="openConsensusWindow()">Consensus Sequence</button>
+  </h3>
+  <div class="consensus-sequence">
+    {% for i in range(0, sequence_length, 135) %}
+      <p>{{ consensus_sequence[i:i+135] }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+  <h2 class="alignment-table-button">Alignment Table:</h2>
+  <div class="table-container">
+    <table>
+      <thead>
+  <tr>
+    <th class="position header">Position</th>
+    <th class="sequence header">Sequence</th>
+    <th class="matches header">Matches</th>
+    <th class="mismatches header">Mismatches</th>
+    <th class="insertions header">Insertions</th>
+    <th class="deletions header">Deletions</th>
+  </tr>
+</thead>
+      <tbody>
+        {% for row in alignment_table[1:] %}
+          <tr>
+            {% for cell in row %}
+              <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+<script>
+  function openConsensusWindow() {
+    var consensusWindow = window.open("", "Consensus Sequence", "width=600,height=400");
+    consensusWindow.document.write('<html><head><title>Consensus Sequence</title></head><body><div style="padding: 20px;"><h2>Consensus Sequence</h2><pre>{{ consensus_sequence }}</pre></div></body></html>');
+    consensusWindow.document.close();
+  }
+</script>

@@ -216,6 +216,11 @@
         '</tbody></table></div></body></html>');
       tableWindow.document.close();
     }
+    function openConsensusWindow() {
+      var consensusWindow = window.open("", "Consensus Sequence", "width=600,height=400");
+      consensusWindow.document.write('<html><head><title>Consensus Sequence</title></head><body><div style="padding: 20px;"><h2>Consensus Sequence</h2><pre>{{ consensus_sequence }}</pre></div></body></html>');
+      consensusWindow.document.close();
+    }
   </script>
 </head>
 <body>
@@ -227,8 +232,7 @@
   <div class="heading-button" onclick="openHeatmapWindow()">Alignment Matrix Heatmap</div>
   <div class="heading-button" onclick="openScatterPlotWindow()">Aligned Sequences Scatter Plot</div>
   <div class="heading-button" onclick="openTableWindow()">Alignment Table</div>
-  <div class="heading-button" onclick="openTableWindow()">Consensus Sequence</div>
-
+  <div class="heading-button" onclick="openConsensusWindow()">Consensus Sequence</div>
   <div class="graph-container">
     <div class="graph-item">
       <h3>Alignment Matrix Heatmap</h3>

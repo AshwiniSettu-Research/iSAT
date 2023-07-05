@@ -2,7 +2,7 @@
 
 
 ## Description
-The Protein Sequence Alignment Tool is a powerful software tool based on the SFA (Structure-based Fingerprint Alignment) algorithm. It is designed to facilitate accurate and comprehensive alignment of protein sequences, aiding in functional annotation, protein structure prediction, drug discovery, and evolutionary biology studies.
+The Protein Sequence Alignment Tool is a powerful software tool based on the SFA (Structure-based Fingerprint Alignment) algorithm. It is designed to facilitate accurate and comprehensive alignment of protein sequences, aiding in functional annotation, protein structure prediction, drug discovery, and evolutionary biology studies. ProAlignX is accessed as a user-friendly web-based software tool. users input the protein sequences of interest, and ProAlignX employs the SFA algorithm to calculate structure-based fingerprints, construct an alignment matrix, and generate alignment results. The software further enhances usability by providing diverse visualization techniques, such as alignment matrix heatmaps, scatter plots, and alignment tables. These visualizations offer comprehensive insights into the alignment process and facilitate the analysis of structural characteristics of proteins.
 
 
 ## Features

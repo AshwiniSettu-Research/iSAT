@@ -1,0 +1,40 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install Flask Framework
+        run: pip install Flask
+
+      - name: Install Required Packages
+        run: |
+          pip install matplotlib
+          pip install numpy
+          pip install Biopython
+          pip install colorama
+          pip install termcolor
+          pip install scipy
+
+      - name: Clone Repository
+        run: git clone [https://github.com/AshwiniSettu-Research/iSAT]
+
+      - name: Install Project Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Start Tool
+        run: python app.py

@@ -184,10 +184,10 @@ def sfa(a, b, w_m, w_d, g, alignment_matrix=None):
     plt.show()
 
     # Print the traceback alignment as a single line.
-    traceback_alignment_seq = ''.join([amino_acid for amino_acid, _ in traceback_alignment])
+    traceback_alignment_seq = ''.join([amino_acid for amino_acid, _ in traceback_alignment[::-1]])
     print(f"Traceback alignment: {traceback_alignment_seq}")
 
-    return similarity_score, accuracy, alignment, traceback_alignment, alignment_matrix
+    return similarity_score, accuracy, alignment, traceback_alignment, traceback_alignment_seq, alignment_matrix
 
 def sequence_consensus(aligned_sequences):
     consensus = ''
@@ -215,7 +215,7 @@ def process_form():
     
 
     # Call your existing function or scripts here to process the input and obtain the output
-    similarity_score, accuracy, alignment, traceback_alignment, alignment_matrix = sfa(protein_sequence_a, protein_sequence_b, 1, -1, -2)
+    similarity_score, accuracy, alignment, traceback_alignment, traceback_alignment_seq, alignment_matrix = sfa(protein_sequence_a, protein_sequence_b, 1, -1, -2)
 
     # Create a table-like output as a string
     output_table = 'Alignment Results:\n'
@@ -228,6 +228,8 @@ def process_form():
     output_table += 'Sequence 2:\n\n'
     for i in range(0, len(protein_sequence_b), 160):  # Print 80 characters per row
         output_table += protein_sequence_b[i:i+160] + '\n'
+    output_table += '---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n'
+    output_table += f'Traceback alignment: {traceback_alignment_seq}\n\n'   
     output_table += '---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n'
     output_table += f'Similarity score: {similarity_score}\n'
     output_table += f'Accuracy: {accuracy:.2%}\n\n'
